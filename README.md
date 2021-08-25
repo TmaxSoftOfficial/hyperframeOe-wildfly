@@ -104,7 +104,7 @@
 
     ${WILDFLY_HOME}/standalone/configuration/standalone.xml
 
-### 2) 로그 경로
+### 2) 환경 설정
 
 * 외부 Client 접속 허용
       
@@ -115,7 +115,7 @@
       </interface>
       ...
       
-* port 번호 변경
+* port 변경
 
       ... 
       <socket-binding-group name="standard-sockets" default-interface="public" port-offset="${jboss.socket.binding.port-offset:0}">
