@@ -149,8 +149,6 @@ Wildfly : ${WILDFLY-HOME}/bin : $ ./standalone.sh --version
 
 Java : $java -version
 
-## 라이센스
-
 ## 버전 이력
 
 wildfly-preview-22.0.0.Final
