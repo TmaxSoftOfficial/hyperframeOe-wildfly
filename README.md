@@ -83,7 +83,85 @@ port 번호 변경
        
 ...
 
+## 웹서버 연동방법
+
+- apache & WildFly 연동
+
+1. 사전에 apache 설치가 필요. (Apache 제품의 README.MD 파일 참고)
+
+2. tomcat-connectors-1.2.46-src.tar.gz 압축 해제하여  tomcat connector jk 설치
+
+$ tar xzvf tomcat-connectors.1.2.46-src.tar.gz
+$ cd tomcat-connectors.1.2.46-src/native
+$ ./configure --with-apxs=/${APACHE_HOME}/bin/apxs
+$ make
+$ make install
+
+설치가 정상완료되면 apache 설치 디렉토리 하위에 위치한 mudlues 디렉토리에 mkd_jk.so 파일이 생성
+
+3. ${APACH_HOME}/conf 파일에 mkd_jk 설정 추가
+
+oadModule jk_module modules/mod_jk.so
+
+Include conf/extra/mod_jk.conf
+
+4. ${APACH_EHOME}/conf/extra 경로에 mkd_jk.conf 파일을 생성하여 아래의 설정 추가
+
+<IfModule mod_jk.c>
+
+# Where to find workers.properties
+
+JkWorkersFile conf/workers.properties
+
+
+# Where to put jk shared memory
+
+JkShmFile logs/mod_jk.shm
+
+
+# Where to put jk logs
+
+JkLogFile logs/mod_jk.log
+
+
+# Set the jk log level [debug/error/info]
+
+JkLogLevel info
+
+
+# Select the timestamp log format
+
+JkLogStampFormat "[%a %b %d %H:%M:%S %Y] "
+
+
+## url pattern 에 따른 connector mapping
+
+JkMountFile conf/uriworkermap.properties
+
+</IfModule>
+
+5. ${APACHE_HOME}/conf의 workers.properties 파일 생성해서 아래와 같이 연동할 톰캣리스트 작성
+
+worker.list=worker1
+
+worker.worker1.port=8009
+
+worker.worker1.host=192.168.0.120
+
+worker.worker1.type=ajp13
+
+6. ${APACHE_HOME]/conf에 uriworkermap.properties 파일 생성해서 톰캣에서 처리할 uri 작성
+
+/*=worker1
+
+7. ${WILDFLY_HOME}/standalone/configure의 standalone.xml에 아래의 내용을 <server name...>절 이하에 추가
+
+<ajp-listener name="ajp" socket-binding="ajp" />
+
+8. apache 및 WildFly 기동
+
 ## 버전 확인
+
 Wildfly : ${WILDFLY-HOME}/bin : $ ./standalone.sh --version
 
 Java : $java -version
