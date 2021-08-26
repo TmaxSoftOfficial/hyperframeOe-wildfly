@@ -140,7 +140,7 @@
       $ ./configure --with-apxs=/${APACHE_HOME}/bin/apxs
       $ make & make install
 
-* 정상 설치 완료 시, ${APACHE_HOME}/mudlues/에서 mod_jk.so 파일 생성
+* 정상 설치 완료 시, ${APACHE_HOME}/modules/에서 mod_jk.so 파일 생성
 
 * ${APACHE_HOME}/conf/httpd.conf 파일에 mod_jk 설정 추가
 
@@ -151,7 +151,7 @@
 
 * ${APACHE_HOME}/conf/extra/mod_jk.conf 파일 생성
 
-      $ vi ${APACH_HOME}/conf/extra/mkd_jk.conf
+      $ vi ${APACHE_HOME}/conf/extra/mkd_jk.conf
       
       # mkd_jk.conf
       <IfModule mod_jk.c>
