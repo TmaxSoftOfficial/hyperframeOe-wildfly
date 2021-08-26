@@ -5,18 +5,18 @@
 ## 설치 파일
 
 ### WildFly
-* Verison : wildfly-preview-22.0.0.Final
+* Verison : wildfly-22.0.0
 * Note : https://www.wildfly.org/downloads/
 
 ## 설치 및 실행
 
 ### 1) WildFly 압축 풀기
 
-    $ tar -zxf wildfly-preview-22.0.0.Final.tar.gz
+    $ tar -zxf wildfly-22.0.0.tar.gz
 
 ### 2) Port 확인 및 변경
 
-    $ vi ${WILDFLY_HOME}/wildfly-preview-22.0.0.Final/standalone/standalone.xml
+    $ vi ${WILDFLY_HOME}/standalone/standalone.xml
 
     # 프로토콜에 따른 Port 확인 및 변경
     <socket-binding-group name="standard-sockets" default-interface="public" port-offset="${jboss.socket.binding.port-offset:0}">
@@ -28,14 +28,14 @@
       
 ### 3) WildFly 실행
 
-    $ vi ${WILDFLY_HOME}/wildfly-preview-22.0.0.Final/bin/
+    $ vi ${WILDFLY_HOME}/bin/
     $ ./standalone.sh
 
 ### 4) WildFly 종료 
 
 * 관리자 접속 / 종료
 
-      $ cd ${WILDFLY_HOME}/wildfly-preview-22.0.0.Final/bin/
+      $ cd ${WILDFLY_HOME}/bin/
       $ ./jboss-cli.sh 
       You are disconnected at the moment. Type 'connect' to connect to the server or 'help' for the list of supported commands.
       [disconnect /] connect localhost:[manage port]                    # standalone.xml 확인 가능
@@ -43,7 +43,7 @@
 
 * 한 줄 종료
 
-      $ cd /home/username/wildfly-preview-22.0.0.Final/bin/
+      $ cd ${WILDFLY_HOME}/bin/
       $ ./jboss-cli.sh --controller:localhost:[manage port] --connect command=:shutdown
 
 ## 디렉토리 구조
@@ -74,7 +74,7 @@
 
       JBoss Bootstrap Environment
 
-      JBOSS_HOME: /home/wee/wildfly-preview-22.0.0.Final
+      JBOSS_HOME: /home/wee/wildfly-22.0.0.Final
 
       JAVA: /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.302.b08-0.el7_9.x86_64/jre/bin/java
 
