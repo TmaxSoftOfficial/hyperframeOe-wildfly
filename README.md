@@ -232,4 +232,4 @@
 ## 검증 내역
 
     HyperFrameOE-Wildfly 22.0.0
-    첨부한 wildfly-22.0.0.tar.gz 는 CentOS Linux release 7.9.2009 (Core)에서 테스트 
+    CentOS Linux release 7.9.2009 (Core)에서 테스트 
